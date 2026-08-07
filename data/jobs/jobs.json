@@ -254,5 +254,18 @@
     "deliveryAttempts": 0,
     "errorMessage": "❌ Saldo token tidak cukup.\n\nDibutuhkan: 700 token\nSaldo Anda: 0 token\n\nSilakan beli token terlebih dahulu.",
     "completedAt": 1786129747168
+  },
+  {
+    "id": "task_6493313218_1786132182734",
+    "chatId": 6493313218,
+    "modelVersion": "v1",
+    "tokenCost": 1300,
+    "imageFileId": "AgACAgUAAxkBAAIEa2p2Kc2QvUYcNr6wJBqjOM2TxdmAAAIHGWsbXUiwV2PECfGM8vpdAQADAgADdwADPQQ",
+    "videoFileId": "BAACAgUAAxkBAAIEdWp2KtLxr2fRDkl-TwcYTlxoOWnDAAJ0IQACXUiwV9cEpRbywHA_PQQ",
+    "status": "FAILED",
+    "createdAt": 1786132182734,
+    "deliveryAttempts": 0,
+    "errorMessage": "❌ Saldo token tidak cukup.\n\nDibutuhkan: 700 token\nSaldo Anda: 0 token\n\nSilakan beli token terlebih dahulu.",
+    "completedAt": 1786132182737
   }
 ]
