@@ -1,0 +1,54 @@
+{
+  "users": {
+    "8765491896": {
+      "chatId": 8765491896,
+      "userId": 8765491896,
+      "username": "Babymicha",
+      "createdAt": 1786108090463,
+      "lastActivityAt": 1786111183553
+    }
+  },
+  "tokenBalances": {
+    "8765491896": {
+      "chatId": 8765491896,
+      "balance": 2800,
+      "lockedTokens": 0,
+      "totalEarned": 3500,
+      "totalSpent": 700,
+      "updatedAt": 1786112339846
+    }
+  },
+  "payments": [],
+  "tokenHistory": [
+    {
+      "id": "8765491896_1786111276010_0.6634621315337204",
+      "chatId": 8765491896,
+      "type": "lock",
+      "tokens": 700,
+      "reason": "Lock 700 token untuk job",
+      "createdAt": 1786111276010
+    },
+    {
+      "id": "8765491896_1786112339853_0.41355615011234315",
+      "chatId": 8765491896,
+      "type": "deduct",
+      "tokens": 700,
+      "jobId": "task_8765491896_1786111276002",
+      "reason": "Deduct untuk job",
+      "createdAt": 1786112339853
+    }
+  ],
+  "jobs": {
+    "task_8765491896_1786111276002": {
+      "id": "task_8765491896_1786111276002",
+      "chatId": 8765491896,
+      "modelVersion": "v1",
+      "tokenCost": 700,
+      "imageFileId": "",
+      "status": "success",
+      "startedAt": 1786111276013,
+      "resultUrl": "https://rh-hk-images-1252422369.cos.ap-hongkong.myqcloud.com/8a1e836636c7bc89126f150b11ccafaf/output/AnimateComfy_00010_p81-audio_tsbah_1786112307.mp4",
+      "completedAt": 1786112339862
+    }
+  }
+}

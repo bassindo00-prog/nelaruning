@@ -1,0 +1,26 @@
+{
+  "name": "runninghub-telegram-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Telegram bot untuk menjalankan workflow Motion Control RunningHub: terima gambar/video/prompt, jalankan job, kirim video hasil.",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "check": "tsx src/check.ts"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "fs-extra": "^11.4.0",
+    "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.10.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

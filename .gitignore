@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+
+# build
+/dist
+
+# env — jangan commit kredensial
+.env
+.env.local
+
+# hasil unduhan
+/downloads
+
+# misc
+*.log
+.DS_Store
+nul

@@ -1,0 +1,679 @@
+{
+  "316": {
+    "inputs": {
+      "model_name": "Wan2_1_VAE_bf16.safetensors",
+      "precision": "fp32",
+      "use_cpu_cache": true,
+      "verbose": false
+    },
+    "class_type": "WanVideoVAELoader",
+    "_meta": {
+      "title": "WanVideo VAE Loader"
+    }
+  },
+  "320": {
+    "inputs": {
+      "strength_1": 1.0000000000000002,
+      "strength_2": 1.0000000000000002,
+      "crop": "center",
+      "combine_embeds": "average",
+      "force_offload": true,
+      "tiles": 0,
+      "ratio": 0.5000000000000001,
+      "clip_vision": [
+        "322",
+        0
+      ],
+      "image_1": [
+        "331",
+        0
+      ]
+    },
+    "class_type": "WanVideoClipVisionEncode",
+    "_meta": {
+      "title": "WanVideo ClipVision Encode"
+    }
+  },
+  "322": {
+    "inputs": {
+      "clip_name": "clip_vision_h.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "CLIP视觉加载器"
+    }
+  },
+  "325": {
+    "inputs": {
+      "value": [
+        "379",
+        4
+      ]
+    },
+    "class_type": "Int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "326": {
+    "inputs": {
+      "frame_rate": [
+        "375",
+        0
+      ],
+      "loop_count": 0,
+      "filename_prefix": "jiebujie",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": false,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": true,
+      "no_preview": false,
+      "images": [
+        "337",
+        0
+      ],
+      "audio": [
+        "392",
+        2
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "合并为视频"
+    }
+  },
+  "330": {
+    "inputs": {
+      "value": "a*b+1",
+      "a": [
+        "341",
+        0
+      ],
+      "b": [
+        "349",
+        0
+      ]
+    },
+    "class_type": "SimpleMath+",
+    "_meta": {
+      "title": "简易运算"
+    }
+  },
+  "331": {
+    "inputs": {
+      "width": [
+        "355",
+        0
+      ],
+      "height": [
+        "325",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "keep_proportion": "pad_edge_pixel",
+      "pad_color": "0, 0, 0",
+      "crop_position": "top",
+      "divisible_by": 16,
+      "device": "cpu",
+      "image": [
+        "391",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJv2",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "335": {
+    "inputs": {
+      "steps": 3,
+      "cfg": 1.0000000000000002,
+      "shift": 5.000000000000001,
+      "seed": 848860387322013,
+      "force_offload": true,
+      "scheduler": "dpm++_sde",
+      "riflex_freq_index": 0,
+      "denoise_strength": 1,
+      "batched_cfg": "",
+      "rope_function": "comfy",
+      "start_step": 0,
+      "end_step": -1,
+      "add_noise_to_samples": false,
+      "model": [
+        "387",
+        0
+      ],
+      "image_embeds": [
+        "383",
+        0
+      ],
+      "text_embeds": [
+        "336",
+        0
+      ]
+    },
+    "class_type": "WanVideoSampler",
+    "_meta": {
+      "title": "WanVideo Sampler"
+    }
+  },
+  "336": {
+    "inputs": {
+      "model_name": "umt5-xxl-enc-bf16.safetensors",
+      "precision": "bf16",
+      "positive_prompt": "Manter expressões faciais e posição da cabeça consistentes, aprimorar realismo.",
+      "negative_prompt": "cores saturadas demais, superexposição, estático, detalhes borrados, legendas, estilizado, ilustração, pintura, quadro, parado, cinza geral, pior qualidade, baixa qualidade, artefatos JPEG, feio, incompleto, dedos extras, mãos mal desenhadas, rosto mal desenhado, deformado, desfigurado, membros malformados, dedos fundidos, imagem estática, fundo bagunçado, três pernas, muitas pessoas no fundo, andando para trás",
+      "quantization": "disabled",
+      "use_disk_cache": false,
+      "device": "gpu"
+    },
+    "class_type": "WanVideoTextEncodeCached",
+    "_meta": {
+      "title": "WanVideo TextEncode Cached"
+    }
+  },
+  "337": {
+    "inputs": {
+      "image": [
+        "340",
+        0
+      ]
+    },
+    "class_type": "GetImageSizeAndCount",
+    "_meta": {
+      "title": "获取图像尺寸数量"
+    }
+  },
+  "338": {
+    "inputs": {
+      "purge_cache": true,
+      "purge_models": true,
+      "anything": [
+        "335",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: PurgeVRAM",
+    "_meta": {
+      "title": "LayerUtility: Purge VRAM"
+    }
+  },
+  "339": {
+    "inputs": {
+      "purge_cache": true,
+      "purge_models": true,
+      "anything": [
+        "340",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: PurgeVRAM",
+    "_meta": {
+      "title": "LayerUtility: Purge VRAM"
+    }
+  },
+  "340": {
+    "inputs": {
+      "enable_vae_tiling": false,
+      "tile_x": 272,
+      "tile_y": 272,
+      "tile_stride_x": 144,
+      "tile_stride_y": 128,
+      "normalization": "default",
+      "vae": [
+        "316",
+        0
+      ],
+      "samples": [
+        "335",
+        0
+      ]
+    },
+    "class_type": "WanVideoDecode",
+    "_meta": {
+      "title": "WanVideo Decode"
+    }
+  },
+  "341": {
+    "inputs": {
+      "value": 15
+    },
+    "class_type": "Int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "349": {
+    "inputs": {
+      "value": 35
+    },
+    "class_type": "Int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "350": {
+    "inputs": {
+      "blocks_to_swap": 30,
+      "offload_img_emb": false,
+      "offload_txt_emb": false,
+      "use_non_blocking": true,
+      "vace_blocks_to_swap": 0,
+      "prefetch_blocks": 1,
+      "block_swap_debug": false
+    },
+    "class_type": "WanVideoBlockSwap",
+    "_meta": {
+      "title": "WanVideo Block Swap"
+    }
+  },
+  "351": {
+    "inputs": {
+      "model": [
+        "365",
+        0
+      ],
+      "lora": [
+        "364",
+        0
+      ]
+    },
+    "class_type": "WanVideoSetLoRAs",
+    "_meta": {
+      "title": "WanVideo Set LoRAs"
+    }
+  },
+  "352": {
+    "inputs": {
+      "purge_cache": true,
+      "purge_models": true,
+      "anything": [
+        "365",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: PurgeVRAM",
+    "_meta": {
+      "title": "LayerUtility: Purge VRAM"
+    }
+  },
+  "353": {
+    "inputs": {
+      "purge_cache": true,
+      "purge_models": true,
+      "anything": [
+        "364",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: PurgeVRAM",
+    "_meta": {
+      "title": "LayerUtility: Purge VRAM"
+    }
+  },
+  "355": {
+    "inputs": {
+      "value": [
+        "379",
+        3
+      ]
+    },
+    "class_type": "Int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "364": {
+    "inputs": {
+      "lora_0": "WanAnimate_relight_lora_fp16.safetensors",
+      "strength_0": 1.5000000000000002,
+      "lora_1": "Wan2.2-Lightning_I2V-A14B-4steps-lora_LOW_fp16.safetensors",
+      "strength_1": 1.0000000000000002,
+      "lora_2": "FastWan_T2V_14B_480p_lora_rank_128_bf16.safetensors",
+      "strength_2": 1.0000000000000002,
+      "lora_3": "Wan21_PusaV1_LoRA_14B_rank512_bf16.safetensors",
+      "strength_3": 1.0000000000000002,
+      "lora_4": "Wan2.2-Fun-A14B-InP-LOW-HPS2.1_resized_dynamic_avg_rank_15_bf16.safetensors",
+      "strength_4": 0.5000000000000001,
+      "low_mem_load": false,
+      "merge_loras": false,
+      "prev_lora": [
+        "393",
+        0
+      ]
+    },
+    "class_type": "WanVideoLoraSelectMulti",
+    "_meta": {
+      "title": "WanVideo Lora Select Multi"
+    }
+  },
+  "365": {
+    "inputs": {
+      "model": "Wan22Animate/Wan2_2-Animate-14B_fp8_scaled_e4m3fn_KJ_v2.safetensors",
+      "base_precision": "fp16_fast",
+      "quantization": "disabled",
+      "load_device": "offload_device",
+      "attention_mode": "sageattn",
+      "rms_norm_function": "default"
+    },
+    "class_type": "WanVideoModelLoader",
+    "_meta": {
+      "title": "WanVideo Model Loader"
+    }
+  },
+  "366": {
+    "inputs": {
+      "purge_cache": true,
+      "purge_models": true,
+      "anything": [
+        "390",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: PurgeVRAM V2",
+    "_meta": {
+      "title": "LayerUtility: Purge VRAM V2"
+    }
+  },
+  "367": {
+    "inputs": {
+      "expand": 10,
+      "tapered_corners": true,
+      "mask": [
+        "366",
+        0
+      ]
+    },
+    "class_type": "GrowMask",
+    "_meta": {
+      "title": "遮罩扩展"
+    }
+  },
+  "369": {
+    "inputs": {
+      "block_size": 32,
+      "device": "cpu",
+      "masks": [
+        "367",
+        0
+      ]
+    },
+    "class_type": "BlockifyMask",
+    "_meta": {
+      "title": "Blockify Mask"
+    }
+  },
+  "370": {
+    "inputs": {
+      "color": "0, 0, 0",
+      "device": "cpu",
+      "image": [
+        "379",
+        0
+      ],
+      "mask": [
+        "369",
+        0
+      ]
+    },
+    "class_type": "DrawMaskOnImage",
+    "_meta": {
+      "title": "Draw Mask On Image"
+    }
+  },
+  "373": {
+    "inputs": {
+      "model_file": "SeC-4B-fp8.safetensors",
+      "device": "auto",
+      "use_flash_attn": true,
+      "allow_mask_overlap": true
+    },
+    "class_type": "SeCModelLoader",
+    "_meta": {
+      "title": "SeC Model Loader"
+    }
+  },
+  "374": {
+    "inputs": {
+      "value": 960
+    },
+    "class_type": "Int",
+    "_meta": {
+      "title": "整数"
+    }
+  },
+  "375": {
+    "inputs": {
+      "a": [
+        "349",
+        0
+      ]
+    },
+    "class_type": "CM_IntToFloat",
+    "_meta": {
+      "title": "整数到浮点"
+    }
+  },
+  "379": {
+    "inputs": {
+      "aspect_ratio": "original",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "letterbox",
+      "method": "lanczos",
+      "round_to_multiple": "16",
+      "scale_to_side": "longest",
+      "scale_to_length": [
+        "374",
+        0
+      ],
+      "background_color": "#000000",
+      "image": [
+        "392",
+        0
+      ]
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "按宽高比缩放_V2"
+    }
+  },
+  "383": {
+    "inputs": {
+      "width": [
+        "355",
+        0
+      ],
+      "height": [
+        "325",
+        0
+      ],
+      "num_frames": [
+        "392",
+        1
+      ],
+      "force_offload": false,
+      "frame_window_size": 77,
+      "colormatch": "disabled",
+      "pose_strength": 1.0000000000000002,
+      "face_strength": 1.0000000000000002,
+      "tiled_vae": false,
+      "vae": [
+        "316",
+        0
+      ],
+      "clip_embeds": [
+        "320",
+        0
+      ],
+      "ref_images": [
+        "331",
+        0
+      ],
+      "pose_images": [
+        "385",
+        0
+      ],
+      "face_images": [
+        "384",
+        1
+      ]
+    },
+    "class_type": "WanVideoAnimateEmbeds",
+    "_meta": {
+      "title": "WanVideo Animate Embeds"
+    }
+  },
+  "384": {
+    "inputs": {
+      "width": [
+        "379",
+        3
+      ],
+      "height": [
+        "379",
+        4
+      ],
+      "model": [
+        "389",
+        0
+      ],
+      "images": [
+        "379",
+        0
+      ]
+    },
+    "class_type": "PoseAndFaceDetection",
+    "_meta": {
+      "title": "Pose and Face Detection"
+    }
+  },
+  "385": {
+    "inputs": {
+      "width": [
+        "379",
+        3
+      ],
+      "height": [
+        "379",
+        4
+      ],
+      "retarget_padding": 16,
+      "body_stick_width": -1,
+      "hand_stick_width": -1,
+      "draw_head": "True",
+      "pose_data": [
+        "384",
+        0
+      ]
+    },
+    "class_type": "DrawViTPose",
+    "_meta": {
+      "title": "Draw ViT Pose"
+    }
+  },
+  "387": {
+    "inputs": {
+      "model": [
+        "351",
+        0
+      ],
+      "block_swap_args": [
+        "350",
+        0
+      ]
+    },
+    "class_type": "WanVideoSetBlockSwap",
+    "_meta": {
+      "title": "WanVideo Set BlockSwap"
+    }
+  },
+  "389": {
+    "inputs": {
+      "vitpose_model": "vitpose_h_wholebody_model.onnx",
+      "yolo_model": "yolov10m.onnx",
+      "onnx_device": "CUDAExecutionProvider"
+    },
+    "class_type": "OnnxDetectionModelLoader",
+    "_meta": {
+      "title": "ONNX Detection Model Loader"
+    }
+  },
+  "390": {
+    "inputs": {
+      "positive_points": [
+        "384",
+        2
+      ],
+      "negative_points": "",
+      "tracking_direction": "forward",
+      "annotation_frame_idx": 0,
+      "object_id": 1,
+      "max_frames_to_track": -1,
+      "mllm_memory_size": 12,
+      "offload_video_to_cpu": false,
+      "auto_unload_model": true,
+      "model": [
+        "373",
+        0
+      ],
+      "frames": [
+        "379",
+        0
+      ],
+      "bbox": [
+        "384",
+        3
+      ]
+    },
+    "class_type": "SeCVideoSegmentation",
+    "_meta": {
+      "title": "SeC Video Segmentation"
+    }
+  },
+  "391": {
+    "inputs": {
+      "image": "d39a0b02566ce09abd250805f37224f244ed4a6f9ec6f93c67df87f31b4f93c3.jpeg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "392": {
+    "inputs": {
+      "video": "824f3ed0a4aa9582213749ac6f0d87b76b47293f45d61a55bad62a8ae3380308.mp4",
+      "force_rate": [
+        "349",
+        0
+      ],
+      "force_size": "Disabled",
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": [
+        "330",
+        0
+      ],
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "Wan"
+    },
+    "class_type": "VHS_LoadVideo",
+    "_meta": {
+      "title": "加载视频"
+    }
+  },
+  "393": {
+    "inputs": {
+      "pwd": ""
+    },
+    "class_type": "RHHiddenNodes",
+    "_meta": {
+      "title": "Group Nodes(Password)"
+    }
+  }
+}
