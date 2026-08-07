@@ -86,7 +86,8 @@ export function getPackageInfo(packageId: string) {
 /**
  * Format token number dengan separators
  */
-export function formatTokens(tokens: number): string {
+export function formatTokens(tokens: number | undefined | null): string {
+  if (tokens === undefined || tokens === null) return '0';
   return tokens.toLocaleString('id-ID');
 }
 
