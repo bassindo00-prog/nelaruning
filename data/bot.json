@@ -1,14 +1,36 @@
 {
   "users": {
+    "1147281185": {
+      "chatId": 1147281185,
+      "userId": 1147281185,
+      "username": "KingBoyySPN",
+      "createdAt": 1786129722043,
+      "lastActivityAt": 1786129722043
+    },
     "8765491896": {
       "chatId": 8765491896,
       "userId": 8765491896,
       "username": "Babymicha",
       "createdAt": 1786108090463,
       "lastActivityAt": 1786111183553
+    },
+    "6493313218": {
+      "chatId": 6493313218,
+      "userId": 6493313218,
+      "username": "Avelin12",
+      "createdAt": 1786129547862,
+      "lastActivityAt": 1786129679930
     }
   },
   "tokenBalances": {
+    "1147281185": {
+      "chatId": 1147281185,
+      "balance": 0,
+      "lockedTokens": 0,
+      "totalEarned": 0,
+      "totalSpent": 0,
+      "updatedAt": 1786129722047
+    },
     "8765491896": {
       "chatId": 8765491896,
       "balance": 2800,
@@ -16,6 +38,14 @@
       "totalEarned": 3500,
       "totalSpent": 700,
       "updatedAt": 1786112339846
+    },
+    "6493313218": {
+      "chatId": 6493313218,
+      "balance": 0,
+      "lockedTokens": 0,
+      "totalEarned": 0,
+      "totalSpent": 0,
+      "updatedAt": 1786129547881
     }
   },
   "payments": [],

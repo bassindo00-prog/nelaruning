@@ -21,7 +21,7 @@ const WELCOME = `🎬 Motion Control Generation\n\nPilih menu di bawah untuk mul
 
 /** Model/workflow yang tersedia — hanya Kling Motion Control Pro dengan 1080p */
 const MOTION_CONTROL_CONFIG = {
-  v1: { label: '🎬 Kling Motion Control Pro', tokenCost: 1300, workflowId: '1998198427450269697', mapping: 'aiwood', instanceType: undefined }, // V1 workflow ID dengan 1080p — instanceType: undefined = auto
+  v1: { label: '🎬 Kling Motion Control Pro', tokenCost: 1300, workflowId: process.env.RUNNINGHUB_WORKFLOW_ID || '2085278920837341185', mapping: 'aiwood', instanceType: undefined }, // V1 workflow ID dari .env dengan 1080p
 };
 
 /** Format ms → HH:MM:SS */
