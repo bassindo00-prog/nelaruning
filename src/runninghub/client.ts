@@ -141,16 +141,30 @@ export class RunningHubClient {
     const chatId = opts.chatId ?? 'unknown';
     const requestNum = opts.requestNumber ?? 0;
     const endpoint = `/${this.runPath}/${opts.workflowId}`;
+    const authKey = opts.apiKey ?? this.apiKey;
+    const authKeyMasked = authKey.substring(0, 8) + '...' + authKey.substring(authKey.length - 4);
+    
     console.log(
       `[AUDIT] [${timestamp}] [chatId=${chatId}] [req#${requestNum}] runWorkflow() called`,
       `endpoint=${endpoint}`,
       `nodeCount=${opts.nodeInfoList.length}`,
     );
+    
+    // DEBUG PAYLOAD — tampilkan seluruh payload yang dikirim
+    console.log(`[DEBUG_PAYLOAD] Full request to RunningHub:`);
+    console.log(`  URL: ${this.baseUrl}${endpoint}`);
+    console.log(`  Method: POST`);
+    console.log(`  Authorization: Bearer ${authKeyMasked}`);
+    console.log(`  Request Body:`, JSON.stringify(body, null, 2));
+    console.log(`  nodeInfoList (${opts.nodeInfoList.length} nodes):`);
+    opts.nodeInfoList.forEach((node, idx) => {
+      console.log(`    [${idx}] nodeId=${node.nodeId}, fieldName=${node.fieldName}, fieldValue=${typeof node.fieldValue === 'string' ? node.fieldValue.substring(0, 50) + (node.fieldValue.length > 50 ? '...' : '') : node.fieldValue}`);
+    });
 
     const r = await this.http.post<TaskResponseV2>(
       endpoint,
       body,
-      { headers: { Authorization: `Bearer ${opts.apiKey ?? this.apiKey}` } },
+      { headers: { Authorization: `Bearer ${authKey}` } },
     );
     const resp = r.data;
     
@@ -160,6 +174,9 @@ export class RunningHubClient {
       `taskId=${resp.taskId ?? 'null'}`,
       `status=${resp.status ?? 'null'}`,
     );
+    
+    // DEBUG RESPONSE — tampilkan respons dari API
+    console.log(`[DEBUG_RESPONSE] Response from RunningHub:`, JSON.stringify(resp, null, 2));
 
     if (!resp.taskId || resp.errorCode) {
       throw new Error(
