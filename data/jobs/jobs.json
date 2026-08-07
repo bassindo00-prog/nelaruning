@@ -267,5 +267,34 @@
     "deliveryAttempts": 0,
     "errorMessage": "❌ Saldo token tidak cukup.\n\nDibutuhkan: 700 token\nSaldo Anda: 0 token\n\nSilakan beli token terlebih dahulu.",
     "completedAt": 1786132182737
+  },
+  {
+    "id": "task_6493313218_1786133856903",
+    "chatId": 6493313218,
+    "modelVersion": "v1",
+    "tokenCost": 700,
+    "imageFileId": "AgACAgUAAxkBAAIEa2p2Kc2QvUYcNr6wJBqjOM2TxdmAAAIHGWsbXUiwV2PECfGM8vpdAQADAgADdwADPQQ",
+    "videoFileId": "BAACAgUAAxkBAAIEdWp2KtLxr2fRDkl-TwcYTlxoOWnDAAJ0IQACXUiwV9cEpRbywHA_PQQ",
+    "status": "FAILED",
+    "createdAt": 1786133856903,
+    "deliveryAttempts": 0,
+    "errorMessage": "❌ Saldo token tidak cukup.\n\nDibutuhkan: 700 token\nSaldo Anda: 0 token\n\nSilakan beli token terlebih dahulu.",
+    "completedAt": 1786133856910
+  },
+  {
+    "id": "task_6493313218_1786133945076",
+    "chatId": 6493313218,
+    "modelVersion": "v1",
+    "tokenCost": 700,
+    "imageFileId": "AgACAgUAAxkBAAIEa2p2Kc2QvUYcNr6wJBqjOM2TxdmAAAIHGWsbXUiwV2PECfGM8vpdAQADAgADdwADPQQ",
+    "videoFileId": "BAACAgUAAxkBAAIEdWp2KtLxr2fRDkl-TwcYTlxoOWnDAAJ0IQACXUiwV9cEpRbywHA_PQQ",
+    "status": "DELIVERED",
+    "createdAt": 1786133945076,
+    "deliveryAttempts": 0,
+    "messageId": 1322,
+    "startedAt": 1786133948262,
+    "runningHubTaskId": "2085823077873364993",
+    "resultUrl": "https://rh-hk-images-1252422369.cos.ap-hongkong.myqcloud.com/8a1e836636c7bc89126f150b11ccafaf/output/AnimateComfy_00005_p80-audio_uojps_1786134745.mp4",
+    "completedAt": 1786134767913
   }
 ]

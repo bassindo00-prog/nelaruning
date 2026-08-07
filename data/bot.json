@@ -19,7 +19,7 @@
       "userId": 6493313218,
       "username": "Avelin12",
       "createdAt": 1786129547862,
-      "lastActivityAt": 1786132170446
+      "lastActivityAt": 1786134809995
     }
   },
   "tokenBalances": {
@@ -41,11 +41,11 @@
     },
     "6493313218": {
       "chatId": 6493313218,
-      "balance": 0,
+      "balance": 1300,
       "lockedTokens": 0,
-      "totalEarned": 0,
-      "totalSpent": 0,
-      "updatedAt": 1786129547881
+      "totalEarned": 2000,
+      "totalSpent": 700,
+      "updatedAt": 1786134767906
     }
   },
   "payments": [],
@@ -66,6 +66,23 @@
       "jobId": "task_8765491896_1786111276002",
       "reason": "Deduct untuk job",
       "createdAt": 1786112339853
+    },
+    {
+      "id": "6493313218_1786133945088_0.5178250946583465",
+      "chatId": 6493313218,
+      "type": "lock",
+      "tokens": 700,
+      "reason": "Lock 700 token untuk job",
+      "createdAt": 1786133945088
+    },
+    {
+      "id": "6493313218_1786134767911_0.5434799662353531",
+      "chatId": 6493313218,
+      "type": "deduct",
+      "tokens": 700,
+      "jobId": "task_6493313218_1786133945076",
+      "reason": "Deduct untuk job",
+      "createdAt": 1786134767911
     }
   ],
   "jobs": {
@@ -79,6 +96,17 @@
       "startedAt": 1786111276013,
       "resultUrl": "https://rh-hk-images-1252422369.cos.ap-hongkong.myqcloud.com/8a1e836636c7bc89126f150b11ccafaf/output/AnimateComfy_00010_p81-audio_tsbah_1786112307.mp4",
       "completedAt": 1786112339862
+    },
+    "task_6493313218_1786133945076": {
+      "id": "task_6493313218_1786133945076",
+      "chatId": 6493313218,
+      "modelVersion": "v1",
+      "tokenCost": 700,
+      "imageFileId": "",
+      "status": "success",
+      "startedAt": 1786133945094,
+      "resultUrl": "https://rh-hk-images-1252422369.cos.ap-hongkong.myqcloud.com/8a1e836636c7bc89126f150b11ccafaf/output/AnimateComfy_00005_p80-audio_uojps_1786134745.mp4",
+      "completedAt": 1786134767915
     }
   }
 }
