@@ -11,6 +11,11 @@
 # hasil unduhan
 /downloads
 
+# database & runtime files — JANGAN HILANG saat git pull!
+/data/bot.json
+/data/bot.lock
+/data/jobs/jobs.json
+
 # misc
 *.log
 .DS_Store
