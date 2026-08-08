@@ -14,6 +14,8 @@ import { createJob, executeAndDeliver, deliverToTelegram } from '../job/manager.
 import { MOTION_CONTROL_MODELS, TOKEN_PACKAGES, ErrorMessages, SuccessMessages, LoadingStatus, formatTokens, formatRupiah } from '../token/system.js';
 import { topupManager } from '../topup/manager.js';
 import { TOPUP_PRICING_TIERS } from '../topup/types.js';
+import { handleSetApiKey, handleApiKeyInput, handleClearApiKey, loadPrivateApiKeyToSession } from '../apikey/handler.js';
+import { apiKeyManager } from '../apikey/manager.js';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -124,6 +126,10 @@ async function startJob(ctx: BotCtx, config: AppConfig, client: RunningHubClient
 
         // 3) Build RunOptions for executeAndDeliver
         // instanceType dari config: "default" (24GB), "plus" (48GB), atau undefined (auto LITE)
+        // Use private API key jika user punya, otherwise gunakan server API key
+        const apiKeyToUse = s.privateApiKey ?? config.runningHub.apiKey;
+        const modeLabel = s.privateApiKey ? '🔑 API Pribadi' : '🏢 Server';
+        
         const runOpts: RunOptions = {
           imageBuffer: image.buffer,
           imageName: image.name,
@@ -133,7 +139,7 @@ async function startJob(ctx: BotCtx, config: AppConfig, client: RunningHubClient
           seed: s.seed,
           workflowId: modelConfig.workflowId,
           instanceType: modelConfig.instanceType ?? config.instanceType, // ← Use model-specific instanceType
-          apiKey: config.runningHub.apiKey,
+          apiKey: apiKeyToUse,
           videoDurationSeconds: s.videoDurationSeconds,
           retainSeconds: config.retainSeconds,
           mapping: modelConfig.mapping,
@@ -148,9 +154,9 @@ async function startJob(ctx: BotCtx, config: AppConfig, client: RunningHubClient
             let text = formatLoadingMessage(elapsed, elapsedMs);
 
             if (p.status === 'SUCCESS') {
-              text = `🟣 Motion Control......\n\n██████████ 100%\n\n⏱️ ${elapsed}\n\n✅ Selesai! Video sedang dikirim...`;
+              text = `🟣 Motion Control......\n\n██████████ 100%\n\n⏱️ ${elapsed}\n\n${modeLabel}\n\n✅ Selesai! Video sedang dikirim...`;
             } else if (p.status === 'FAILED') {
-              text = `❌ Status: GAGAL\n\n⏱️ ${elapsed}\n\nSilakan coba lagi.`;
+              text = `❌ Status: GAGAL\n\n⏱️ ${elapsed}\n\n${modeLabel}\n\nSilakan coba lagi.`;
             }
 
             try {
@@ -324,12 +330,16 @@ export function createBot(config: AppConfig): Telegraf<BotCtx> {
     // Initialize user
     await db.createOrUpdateUser(chatId, ctx.from?.id || 0, ctx.from?.username);
     await tokenManager.initializeUser(chatId, 0);
+    
+    // Load private API key if exists
+    await loadPrivateApiKeyToSession(ctx);
 
     return ctx.reply(WELCOME, {
       parse_mode: 'Markdown',
       reply_markup: {
         inline_keyboard: [
           [Markup.button.callback('🎥 Generation Video', 'gen:start')],
+          [Markup.button.callback('🔑 API Pribadi', 'setprivateapi:menu')],
           [Markup.button.callback('💳 Top Up Kredit', 'payment:topup')],
           [Markup.button.callback('🪙 Credit Token', 'credit:show'), Markup.button.callback('🆔 User ID', 'userid:show')],
         ],
@@ -340,11 +350,16 @@ export function createBot(config: AppConfig): Telegraf<BotCtx> {
   bot.help(async (ctx) => {
     const chatId = ctx.chat!.id;
     console.log(`[${chatId}] /help command`);
+    
+    // Load private API key if exists
+    await loadPrivateApiKeyToSession(ctx);
+    
     return ctx.reply(WELCOME, {
       parse_mode: 'Markdown',
       reply_markup: {
         inline_keyboard: [
           [Markup.button.callback('🎥 Generation Video', 'gen:start')],
+          [Markup.button.callback('🔑 API Pribadi', 'setprivateapi:menu')],
           [Markup.button.callback('💳 Top Up Kredit', 'payment:topup')],
           [Markup.button.callback('🪙 Credit Token', 'credit:show'), Markup.button.callback('🆔 User ID', 'userid:show')],
         ],
@@ -353,6 +368,64 @@ export function createBot(config: AppConfig): Telegraf<BotCtx> {
   });
 
   // ===== Main Menu Callbacks =====
+
+  // 🔑 API Pribadi Menu
+  bot.action('setprivateapi:menu', async (ctx) => {
+    const chatId = ctx.chat!.id;
+    const userId = ctx.from!.id;
+    console.log(`[${chatId}] setprivateapi:menu clicked`);
+    await ctx.answerCbQuery();
+
+    const hasKey = await apiKeyManager.hasPrivateApiKey(userId);
+
+    if (hasKey) {
+      // User sudah punya key - tanya apakah mau ganti atau hapus
+      const message = `🔑 *API Pribadi*\n\nAnda sudah punya API key tersimpan.\n\nPilih aksi:`;
+      await ctx.reply(message, {
+        parse_mode: 'Markdown',
+        reply_markup: Markup.inlineKeyboard([
+          [Markup.button.callback('🔄 Ganti API Key', 'setprivateapi:change')],
+          [Markup.button.callback('🗑️ Hapus API Key', 'setprivateapi:delete')],
+          [Markup.button.callback('↩️ Kembali', 'menu:back')],
+        ]).reply_markup,
+      });
+    } else {
+      // User belum punya key - langsung ke input
+      await handleSetApiKey(ctx);
+    }
+  });
+
+  bot.action('setprivateapi:change', async (ctx) => {
+    const chatId = ctx.chat!.id;
+    console.log(`[${chatId}] setprivateapi:change clicked`);
+    await ctx.answerCbQuery();
+    await handleSetApiKey(ctx);
+  });
+
+  bot.action('setprivateapi:delete', async (ctx) => {
+    const chatId = ctx.chat!.id;
+    console.log(`[${chatId}] setprivateapi:delete clicked`);
+    await ctx.answerCbQuery();
+    await handleClearApiKey(ctx);
+  });
+
+  bot.action('menu:back', async (ctx) => {
+    const chatId = ctx.chat!.id;
+    console.log(`[${chatId}] menu:back clicked`);
+    await ctx.answerCbQuery();
+    await loadPrivateApiKeyToSession(ctx);
+    await ctx.reply(WELCOME, {
+      parse_mode: 'Markdown',
+      reply_markup: {
+        inline_keyboard: [
+          [Markup.button.callback('🎥 Generation Video', 'gen:start')],
+          [Markup.button.callback('🔑 API Pribadi', 'setprivateapi:menu')],
+          [Markup.button.callback('💳 Top Up Kredit', 'payment:topup')],
+          [Markup.button.callback('🪙 Credit Token', 'credit:show'), Markup.button.callback('🆔 User ID', 'userid:show')],
+        ],
+      },
+    });
+  });
 
   // 🎥 Generation Video - langsung default ke V1 (Kling Motion Control Pro)
   bot.action('gen:start', async (ctx) => {
@@ -445,6 +518,12 @@ export function createBot(config: AppConfig): Telegraf<BotCtx> {
   // ===== Commands =====
 
   bot.command('run', (ctx) => startJob(ctx, config, client));
+
+  // 🔑 SET PRIVATE API KEY
+  bot.command('setapikey', (ctx) => handleSetApiKey(ctx));
+
+  // 🔑 CLEAR PRIVATE API KEY
+  bot.command('clearapikey', (ctx) => handleClearApiKey(ctx));
 
   bot.command('reset', async (ctx) => {
     const chatId = ctx.chat!.id;
@@ -645,6 +724,12 @@ export function createBot(config: AppConfig): Telegraf<BotCtx> {
     const text = ctx.message.text.trim();
 
     if (text.startsWith('/')) return;
+
+    // Handle private API key input
+    if (ctx.session.conversationState === 'waiting_private_apikey' as any) {
+      await handleApiKeyInput(ctx);
+      return;
+    }
 
     if (jobQueue.isBusy(chatId)) {
       console.log(`[${chatId}] Text received but job busy`);

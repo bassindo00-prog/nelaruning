@@ -12,6 +12,13 @@ export interface BotSession {
   /** Model Motion Control pilihan user: 'v1' | 'v2' | 'v3'. */
   modelVersion?: 'v1' | 'v2' | 'v3';
 
+  // ===== Private API Key =====
+  /** Private API key yang disimpan user untuk generate pribadi. */
+  privateApiKey?: string;
+
+  /** Flag: apakah user dalam mode private API key. */
+  usingPrivateMode?: boolean;
+
   // ===== File Uploads =====
   /** file_id gambar dari Telegram. */
   imageFileId?: string;
