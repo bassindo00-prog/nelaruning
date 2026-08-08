@@ -59,7 +59,7 @@ async function releaseLock(): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  await acquireLock();
+  // await acquireLock(); // TEMPORARILY DISABLED FOR TESTING
 
   const config = loadConfig();
   

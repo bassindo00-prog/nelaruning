@@ -19,7 +19,7 @@
       "userId": 6493313218,
       "username": "Avelin12",
       "createdAt": 1786129547862,
-      "lastActivityAt": 1786134809995
+      "lastActivityAt": 1786221753172
     }
   },
   "tokenBalances": {
@@ -41,11 +41,11 @@
     },
     "6493313218": {
       "chatId": 6493313218,
-      "balance": 1300,
-      "lockedTokens": 0,
-      "totalEarned": 2000,
-      "totalSpent": 700,
-      "updatedAt": 1786134767906
+      "balance": 500,
+      "lockedTokens": 1400,
+      "totalEarned": 4000,
+      "totalSpent": 2100,
+      "updatedAt": 1786222726853
     }
   },
   "payments": [],
@@ -83,6 +83,89 @@
       "jobId": "task_6493313218_1786133945076",
       "reason": "Deduct untuk job",
       "createdAt": 1786134767911
+    },
+    {
+      "id": "6493313218_1786215037536_0.44361715785270983",
+      "chatId": 6493313218,
+      "type": "lock",
+      "tokens": 700,
+      "reason": "Lock 700 token untuk job",
+      "createdAt": 1786215037536
+    },
+    {
+      "id": "6493313218_1786215955557_0.856673885780351",
+      "chatId": 6493313218,
+      "type": "deduct",
+      "tokens": 700,
+      "jobId": "task_6493313218_1786215037517",
+      "reason": "Deduct untuk job",
+      "createdAt": 1786215955557
+    },
+    {
+      "id": "6493313218_1786216900378_0.admin",
+      "chatId": 6493313218,
+      "type": "earn",
+      "tokens": 2000,
+      "reason": "Admin manual add",
+      "createdAt": 1786216900378
+    },
+    {
+      "id": "6493313218_1786216995349_0.002182852303670435",
+      "chatId": 6493313218,
+      "type": "lock",
+      "tokens": 700,
+      "reason": "Lock 700 token untuk job",
+      "createdAt": 1786216995349
+    },
+    {
+      "id": "6493313218_1786217953174_0.02861169021954313",
+      "chatId": 6493313218,
+      "type": "lock",
+      "tokens": 700,
+      "reason": "Lock 700 token untuk job",
+      "createdAt": 1786217953174
+    },
+    {
+      "id": "6493313218_1786217964251_0.2532810763611326",
+      "chatId": 6493313218,
+      "type": "unlock",
+      "tokens": 700,
+      "reason": "Unlock 700 token (refund)",
+      "createdAt": 1786217964251
+    },
+    {
+      "id": "6493313218_1786217964257_0.6583250789000398",
+      "chatId": 6493313218,
+      "type": "refund",
+      "tokens": 700,
+      "jobId": "task_6493313218_1786217953159",
+      "reason": "Refund karena job gagal",
+      "createdAt": 1786217964257
+    },
+    {
+      "id": "6493313218_1786221600454_0.7216448094900029",
+      "chatId": 6493313218,
+      "type": "lock",
+      "tokens": 700,
+      "reason": "Lock 700 token untuk job",
+      "createdAt": 1786221600454
+    },
+    {
+      "id": "6493313218_1786221779940_0.4839201122460648",
+      "chatId": 6493313218,
+      "type": "lock",
+      "tokens": 700,
+      "reason": "Lock 700 token untuk job",
+      "createdAt": 1786221779940
+    },
+    {
+      "id": "6493313218_1786222726857_0.64211168005765",
+      "chatId": 6493313218,
+      "type": "deduct",
+      "tokens": 700,
+      "jobId": "task_6493313218_1786221779933",
+      "reason": "Deduct untuk job",
+      "createdAt": 1786222726857
     }
   ],
   "jobs": {
@@ -107,6 +190,55 @@
       "startedAt": 1786133945094,
       "resultUrl": "https://rh-hk-images-1252422369.cos.ap-hongkong.myqcloud.com/8a1e836636c7bc89126f150b11ccafaf/output/AnimateComfy_00005_p80-audio_uojps_1786134745.mp4",
       "completedAt": 1786134767915
+    },
+    "task_6493313218_1786215037517": {
+      "id": "task_6493313218_1786215037517",
+      "chatId": 6493313218,
+      "modelVersion": "v1",
+      "tokenCost": 700,
+      "imageFileId": "",
+      "status": "success",
+      "startedAt": 1786215037543,
+      "resultUrl": "https://rh-hk-images-1252422369.cos.ap-hongkong.myqcloud.com/8a1e836636c7bc89126f150b11ccafaf/output/AnimateComfy_00005_p80-audio_jpgyy_1786215935.mp4",
+      "completedAt": 1786215955564
+    },
+    "task_6493313218_1786216995332": {
+      "id": "task_6493313218_1786216995332",
+      "chatId": 6493313218,
+      "modelVersion": "v1",
+      "tokenCost": 700,
+      "imageFileId": "",
+      "status": "queued",
+      "startedAt": 1786216995357
+    },
+    "task_6493313218_1786217953159": {
+      "id": "task_6493313218_1786217953159",
+      "chatId": 6493313218,
+      "modelVersion": "v1",
+      "tokenCost": 700,
+      "imageFileId": "",
+      "status": "queued",
+      "startedAt": 1786217953180
+    },
+    "task_6493313218_1786221600447": {
+      "id": "task_6493313218_1786221600447",
+      "chatId": 6493313218,
+      "modelVersion": "v1",
+      "tokenCost": 700,
+      "imageFileId": "",
+      "status": "queued",
+      "startedAt": 1786221600458
+    },
+    "task_6493313218_1786221779933": {
+      "id": "task_6493313218_1786221779933",
+      "chatId": 6493313218,
+      "modelVersion": "v1",
+      "tokenCost": 700,
+      "imageFileId": "",
+      "status": "success",
+      "startedAt": 1786221779943,
+      "resultUrl": "https://rh-hk-images-1252422369.cos.ap-hongkong.myqcloud.com/8a1e836636c7bc89126f150b11ccafaf/output/AnimateComfy_00005_p80-audio_ybhty_1786222705.mp4",
+      "completedAt": 1786222726862
     }
   }
 }
