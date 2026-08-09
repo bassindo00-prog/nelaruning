@@ -26,21 +26,27 @@ export async function handleApiKeyInput(ctx: BotCtx): Promise<void> {
   const chatId = ctx.chat!.id;
   const inputText = (ctx.message as any)?.text?.trim();
 
+  console.log(`[${chatId}] handleApiKeyInput called, text length: ${inputText?.length || 0}`);
+
   if (!inputText) {
+    console.log(`[${chatId}] No input text`);
     await ctx.reply('⚠️ Input tidak valid. Coba lagi.');
     return;
   }
 
   // Simple validation: API key should be alphanumeric, 30+ chars typically
   if (inputText.length < 20) {
+    console.log(`[${chatId}] API key too short: ${inputText.length} chars`);
     await ctx.reply('⚠️ API key terlalu pendek. Pastikan Anda menyalin semuanya dengan benar.');
     return;
   }
 
   try {
+    console.log(`[${chatId}] Saving API key...`);
     // Save the API key
     await apiKeyManager.setPrivateApiKey(userId, chatId, inputText);
 
+    console.log(`[${chatId}] API key saved successfully`);
     ctx.session.privateApiKey = inputText;
     ctx.session.usingPrivateMode = true;
     ctx.session.conversationState = 'idle';
