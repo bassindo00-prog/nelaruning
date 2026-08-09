@@ -49,9 +49,11 @@ export async function handleApiKeyInput(ctx: BotCtx): Promise<void> {
 
     await ctx.reply(confirmMessage, {
       parse_mode: 'Markdown',
-      reply_markup: Markup.inlineKeyboard([
-        [Markup.button.callback('🎬 Kling Motion Control', 'workflow:kling_private')],
-      ]).reply_markup,
+      reply_markup: {
+        inline_keyboard: [
+          [Markup.button.callback('🎬 Kling Motion Control', 'workflow:kling_private')],
+        ],
+      },
     });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
