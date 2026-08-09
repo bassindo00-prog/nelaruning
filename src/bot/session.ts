@@ -19,6 +19,9 @@ export interface BotSession {
   /** Flag: apakah user dalam mode private API key. */
   usingPrivateMode?: boolean;
 
+  /** Temporary API key from callback (untuk diproses oleh button handler) */
+  tempApiKey?: string;
+
   // ===== File Uploads =====
   /** file_id gambar dari Telegram. */
   imageFileId?: string;
