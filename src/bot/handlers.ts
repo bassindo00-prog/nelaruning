@@ -427,6 +427,18 @@ export function createBot(config: AppConfig): Telegraf<BotCtx> {
     });
   });
 
+  // 🔑 Workflow selection setelah private API key disimpan
+  bot.action('workflow:kling_private', async (ctx) => {
+    const chatId = ctx.chat!.id;
+    console.log(`[${chatId}] workflow:kling_private clicked`);
+    await ctx.answerCbQuery();
+
+    ctx.session.modelVersion = 'v1';
+    ctx.session.conversationState = 'waiting_image';
+
+    await ctx.reply('📷 Silakan kirim gambar utama untuk Motion Control.');
+  });
+
   // 🎥 Generation Video - langsung default ke V1 (Kling Motion Control Pro)
   bot.action('gen:start', async (ctx) => {
     const chatId = ctx.chat!.id;
